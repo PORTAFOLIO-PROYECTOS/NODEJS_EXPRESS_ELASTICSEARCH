@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "933b367c-294f-429f-ae7e-74854276ad28",
+		"name": "ElasticSearch Desarrollo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "4b5e8a42-1679-414a-81a0-86d25d46f2dc",
+			"name": "Crear Indice producto_pe",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"settings\": {\r\n\t\t\"number_of_shards\": 1,\r\n\t\t\"number_of_replicas\": 1\r\n\t},\r\n\t\"mappings\": {\r\n\t\t\"Producto\": {\r\n\t\t\t\"properties\": {\r\n\t\t\t\t\"productoResumenId\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"codigoCampania\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"cuv\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"descripcion\": {\"type\": \"text\"},\r\n\t\t\t\t\"codigoProducto\": {\"type\": \"text\"},\r\n\t\t\t\t\"imagen\": {\"type\": \"keyword\", \"index\": false},\r\n\t\t\t\t\"imagenOrigen\": {\"type\": \"byte\", \"index\": false},\r\n\t\t\t\t\"textoBusqueda\": {\"type\": \"text\"},\r\n\t\t\t\t\"tipoPersonalizacion\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"valorizado\": {\"type\": \"double\"},\r\n\t\t\t\t\"precio\": {\"type\": \"double\"},\r\n\t\t\t\t\"zonasAgotadas\": {\"type\": \"keyword\"},\t\t\t\t\r\n\t\t\t\t\"codigoEstrategia\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"codigoTipoEstrategia\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"marcaId\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"limiteVenta\": {\"type\": \"integer\", \"index\": false},\r\n\t\t\t\t\"activo\": {\"type\": \"boolean\"},\r\n\t\t\t\t\"disponible\": {\"type\": \"boolean\"},\r\n\t\t\t\t\"codigoConsultora\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"diaInicio\": {\"type\": \"byte\", \"index\": false},\r\n\t\t\t\t\"revistaDigital\": {\"type\": \"boolean\"},\r\n\t\t\t\t\"orden\": {\"type\": \"byte\", \"index\": false}\t\t\t\t\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/producto_pe/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"producto_pe",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "9e707a45-dfa3-40c3-a357-46c6dc810d82",
+			"name": "Listar indices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9200/_cat/indices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cat",
+						"indices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "2de4378b-16cb-473d-9060-914ec995cdbd",
+			"name": "Listar propiedades (mapping)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"settings\": {\r\n\t\t\"number_of_shards\": 1,\r\n\t\t\"number_of_replicas\": 1\r\n\t},\r\n\t\"mappings\": {\r\n\t\t\"datatest\": {\r\n\t\t\t\"properties\": {\r\n\t\t\t\t\"borough\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"cuisine\" : {\"type\": \"keyword\"},\r\n\t\t\t\t\"name\": {\"type\": \"keyword\"},\r\n\t\t\t\t\"restaurant_id\": {\"type\": \"integer\"}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/producto_pe/_mapping/Producto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"producto_pe",
+						"_mapping",
+						"Producto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "a893dc14-b977-4360-8b73-81d326a6dcad",
+			"name": "Contar registros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/buscador/Producto/_count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"buscador",
+						"Producto",
+						"_count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "229c916a-c2a7-41b0-93cb-9e31c887570e",
+			"name": "Insertar registro",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productoResumenId\": \"201811.0588.SR\",\r\n\t\"codigoCampania\": \"201811\",\r\n\t\"cuv\":\"0588\",\r\n\t\"descripcion\": \"Producto 0588\",\r\n\t\"codigoProducto\": \"0558\",\r\n\t\"imagen\": \"imagen.jpg\",\r\n\t\"imagenOrigen\": 1,\r\n\t\"textoBusqueda\": \"Producto 0588\",\r\n\t\"tipoPersonalizacion\": \"SR\",\r\n\t\"valorizado\": 85.99,\r\n\t\"precio\": 49.99,\r\n\t\"zonasAgotadas\": [\"001\",\"002\",\"003\",\"004\"],\t\t\t\t\r\n\t\"codigoEstrategia\": \"2001\",\r\n\t\"codigoTipoEstrategia\": \"030\",\r\n\t\"marcaId\": 1,\r\n\t\"limiteVenta\": 99,\r\n\t\"activo\": true,\r\n\t\"disponible\": true,\r\n\t\"codigoConsultora\": 8588,\r\n\t\"diaInicio\": -1,\r\n\t\"revistaDigital\": true,\r\n\t\"orden\": 2\t\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/producto_pe/Producto/201811.0588.SR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"producto_pe",
+						"Producto",
+						"201811.0588.SR"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "ab3f2f3c-2adc-4dbc-93fd-0a5d8b18f0d7",
+			"name": "Buscar registros (sin filtros)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/producto_pe/Producto/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"producto_pe",
+						"Producto",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "d351c50a-5125-4bf2-9173-3db238cf16bd",
+			"name": "Buscar registros (con filtros)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"_source\": {\r\n    \"includes\": [\"productoResumenId\", \"codigoCampania\", \"cuv\", \"descripcion\",\"codigoProducto\",\"imagen\",\"imagenOrigen\",\"valorizado\",\"precio\"]\r\n  },\r\n  \"query\": {\r\n    \"bool\": {\r\n      \"must\": [\r\n        {\"term\": {\"codigoCampania\": \"201811\"}},\r\n        {\"match\": {\"descripcion\": \"Producto\"}}\r\n      ]\r\n    }\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/producto_pe/Producto/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"producto_pe",
+						"Producto",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "d22edc46-4620-4852-80e4-0c16851d5fdb",
+			"name": "Eliminar indice",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/producto_pe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"producto_pe"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
