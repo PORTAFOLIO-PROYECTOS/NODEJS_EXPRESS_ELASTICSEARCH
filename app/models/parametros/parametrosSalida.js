@@ -28,7 +28,7 @@ class parametrosSalida {
     }
 
     // Getter
-    get resultado(){
+    /*get resultado(){
         return {
             'CUV': this.CUV,
             'SAP': this.SAP,
@@ -43,7 +43,7 @@ class parametrosSalida {
             'LimiteVenta': this.LimiteVenta,
             'Stock': this.Stock
         };
-    }
+    }*/
 };
 
 module.exports = parametrosSalida;
