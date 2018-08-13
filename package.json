@@ -1,0 +1,20 @@
+{
+    "name": "api-buscador-productos",
+    "version": "1.0.0",
+    "description": "API Rest buscador de productos",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "#ArquitecturaTD",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "elasticsearch": "^15.1.1",
+        "express": "^4.16.3"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.3"
+    }
+}
