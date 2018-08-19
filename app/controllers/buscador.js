@@ -1,12 +1,9 @@
 const parametrosEntrada = require('../models/parametros/parametrosEntrada');
 const parametrosSalida = require('../models/parametros/parametrosSalida');
 const buscadorModel = require('../models/buscador');
+const utils = require('../common/utils');
 
 exports.buscar = function(req, res, next) {
-
-    //console.log(req.params);
-
-    //TODO: Validar parametros de entrada
 
     let parametros = new parametrosEntrada(
         req.params.codigoPais,
@@ -24,7 +21,6 @@ exports.buscar = function(req, res, next) {
         req.params.diaFacturacion
     );
 
-    //Ejecutar busqueda
     var resultado = buscadorModel.buscar(parametros);
 
     resultado.then(function(resp) {
@@ -35,10 +31,17 @@ exports.buscar = function(req, res, next) {
             const element = resp.hits.hits[index];
             const source = element._source;
 
+            let imagen = utils.getUrlImagen(source.imagen, 
+                parametros.codigoPais,
+                source.imagenOrigen,
+                parametros.codigocampania,
+                source.marcaId
+            );
+
             let salida = new parametrosSalida(
                 source.cuv,
                 source.codigoProducto,
-                source.imagen,
+                imagen,
                 source.descripcion,
                 source.valorizado,
                 source.precio,
@@ -46,11 +49,11 @@ exports.buscar = function(req, res, next) {
                 source.tipoPersonalizacion,
                 source.codigoEstrategia,
                 source.codigoTipoEstrategia,
-                source.limiteVenta,
+                9999,
+                source.limiteVenta ? source.limiteVenta : 0,
                 true);
 
-            arreglo.push(salida);
-            
+            arreglo.push(salida);            
         }
 
         return res.json(arreglo);

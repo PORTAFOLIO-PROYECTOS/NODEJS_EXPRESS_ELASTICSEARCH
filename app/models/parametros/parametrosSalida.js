@@ -10,6 +10,7 @@ class parametrosSalida {
         TipoPersonalizacion,
         CodigoEstrategia,
         CodigoTipoEstrategia,
+        TipoEstrategiaId,
         LimiteVenta,
         Stock,
     ) {
@@ -23,26 +24,9 @@ class parametrosSalida {
         this.TipoPersonalizacion = TipoPersonalizacion;
         this.CodigoEstrategia = CodigoEstrategia;
         this.CodigoTipoEstrategia = CodigoTipoEstrategia;
+        this.TipoEstrategiaId = TipoEstrategiaId;
         this.LimiteVenta = LimiteVenta;
         this.Stock = Stock;
-    }
-
-    // Getter
-    get resultado(){
-        return {
-            'CUV': this.CUV,
-            'SAP': this.SAP,
-            'Imagen': this.Imagen,
-            'Descripcion': this.Descripcion,
-            'Valorizado': this.Valorizado,
-            'Precio': this.Precio,
-            'MarcaId': this.MarcaId,
-            'TipoPersonalizacion': this.TipoPersonalizacion,
-            'CodigoEstrategia': this.CodigoEstrategia,
-            'CodigoTipoEstrategia': this.CodigoTipoEstrategia,
-            'LimiteVenta': this.LimiteVenta,
-            'Stock': this.Stock
-        };
     }
 };
 

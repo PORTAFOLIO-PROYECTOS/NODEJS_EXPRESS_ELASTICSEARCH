@@ -1,12 +1,25 @@
 var filtroShowroom = (function() {
 
-    function filtrar(parametrosEntrada) {
+    function filtrar(parametrosEntrada, filtro) {
 
-        let filtro = {};
+        console.log(parametrosEntrada);
 
-        //TODO: Logica para generar filtro de showroom
+        if (parametrosEntrada.rd == '1' &&
+            parametrosEntrada.mdo == '1' &&
+            parametrosEntrada.suscripcionActiva ==  '0'){
 
-        return filtro;
+                let _push = { term: {"tipoPersonalizacion": "SR"}};
+                filtro.push(_push);
+                _push = { term: {"revistaDigital": "0"}};
+                filtro.push(_push);
+        }
+
+        if(parametrosEntrada.rd == '0'){
+            let _push = { term: {"tipoPersonalizacion": "SR"}};
+            filtro.push(_push);
+            _push = { term: {"revistaDigital": "0"}};
+            filtro.push(_push);
+        }
     }
 
     return {
